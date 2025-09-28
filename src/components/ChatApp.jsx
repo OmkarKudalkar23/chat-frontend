@@ -70,12 +70,12 @@ const ChatApp = () => {
 
   if (!nameSet) {
     return (
-      <div className="flex justify-center items-center h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-black">
+      <div className="flex justify-center items-center h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-black p-4">
         <form
           onSubmit={handleSetUsername}
-          className="bg-gray-900 p-10 rounded-2xl shadow-2xl w-96"
+          className="bg-gray-900 p-8 sm:p-10 rounded-2xl shadow-2xl w-full max-w-sm"
         >
-          <h2 className="text-3xl font-bold mb-6 text-center text-purple-300">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-purple-300">
             Join the Chat
           </h2>
           <input
@@ -98,15 +98,15 @@ const ChatApp = () => {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-black p-6">
-      <div className="bg-gray-900 text-white p-4 rounded-xl mb-4 shadow-lg">
-        <h3 className="font-bold text-lg mb-3">Active Users</h3>
+    <div className="flex flex-col h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-black p-4 sm:p-6">
+      <div className="bg-gray-900 text-white p-3 sm:p-4 rounded-xl mb-4 shadow-lg overflow-x-auto">
+        <h3 className="font-bold text-lg mb-2">Active Users</h3>
         <div className="flex flex-wrap gap-2">
           {activeUsers.length > 0 ? (
             activeUsers.map((user, idx) => (
               <span
                 key={idx}
-                className="px-3 py-1 bg-purple-700 rounded-full text-sm shadow-md"
+                className="px-3 py-1 bg-purple-700 rounded-full text-sm shadow-md whitespace-nowrap"
               >
                 {user}
               </span>
@@ -117,11 +117,11 @@ const ChatApp = () => {
         </div>
       </div>
 
-      <div className="w-full max-w-2xl mx-auto bg-gray-900 rounded-xl shadow-2xl flex flex-col h-full overflow-hidden">
-        <div className="bg-gradient-to-r from-purple-700 to-indigo-700 text-white flex justify-between items-center py-4 px-6 shadow-md rounded-t-xl">
-          <span className="font-bold text-lg">Chat – {username}</span>
+      <div className="w-full max-w-xl mx-auto bg-gray-900 rounded-xl shadow-2xl flex flex-col h-full overflow-hidden">
+        <div className="bg-gradient-to-r from-purple-700 to-indigo-700 text-white flex justify-between items-center py-3 px-4 sm:py-4 sm:px-6 shadow-md rounded-t-xl">
+          <span className="font-bold text-base sm:text-lg">Chat – {username}</span>
           <button
-            className="px-4 py-1 bg-red-600 rounded-md text-sm font-semibold hover:bg-red-700 transition"
+            className="px-3 py-1 sm:px-4 sm:py-1.5 bg-red-600 rounded-md text-sm font-semibold hover:bg-red-700 transition"
             onClick={() => {
               if (window.confirm("Clear chat for all users?")) {
                 socket.emit("clearChat");
@@ -132,29 +132,29 @@ const ChatApp = () => {
           </button>
         </div>
 
-        <ul className="flex-1 overflow-y-auto p-5 space-y-4 bg-gray-800">
+        <ul className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-3 sm:space-y-4 bg-gray-800">
           {messages
             .filter((msg) => !(msg.id === "server" && msg.text?.includes("left")))
             .map((msg, idx) => (
               <li
                 key={idx}
-                className={`max-w-[75%] px-4 py-3 rounded-2xl ${
+                className={`max-w-[75%] px-3 py-2 sm:px-4 sm:py-3 rounded-2xl ${
                   msg.id === myId
-                    ? "ml-auto bg-purple-600 text-white rounded-br-none shadow-lg"
+                    ? "ml-auto bg-purple-600 text-white rounded-br-none shadow-md"
                     : msg.id === "server"
                     ? "mx-auto bg-gray-700 text-purple-300 text-center italic"
                     : "mr-auto bg-gray-700 text-gray-200 rounded-bl-none shadow-md"
                 }`}
               >
                 {msg.id !== "server" && (
-                  <span className="block text-xs font-semibold mb-1 opacity-70 text-purple-300">
+                  <span className="block text-[10px] sm:text-xs font-semibold mb-1 opacity-70 text-purple-300">
                     {msg.username}
                   </span>
                 )}
                 <div>
                   <span>{msg.text}</span>
                   {msg.time && (
-                    <span className="block text-[10px] text-gray-400 mt-1 text-right">
+                    <span className="block text-[9px] sm:text-[10px] text-gray-400 mt-1 text-right">
                       {new Date(msg.time).toLocaleTimeString([], {
                         hour: "2-digit",
                         minute: "2-digit",
@@ -168,31 +168,31 @@ const ChatApp = () => {
         </ul>
 
         {typingUser && (
-          <div className="text-gray-400 italic text-sm px-5 pb-2">
+          <div className="text-gray-400 italic text-sm px-4 sm:px-5 pb-2">
             {typingUser} is typing...
           </div>
         )}
 
         {error && (
-          <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-4 py-2 rounded-lg shadow-lg animate-bounce">
+          <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-4 py-2 rounded-lg shadow-lg animate-bounce text-sm sm:text-base">
             {error}
           </div>
         )}
 
         <form
           onSubmit={handleSubmit}
-          className="flex items-center gap-3 border-t border-gray-700 p-4 bg-gray-900 rounded-b-xl"
+          className="flex flex-col sm:flex-row items-center gap-3 border-t border-gray-700 p-3 sm:p-4 bg-gray-900 rounded-b-xl"
         >
           <input
             type="text"
-            className="flex-1 px-4 py-2 bg-gray-800 text-gray-200 border border-purple-500 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-400"
+            className="flex-1 px-4 py-2 sm:py-3 bg-gray-800 text-gray-200 border border-purple-500 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-400 w-full"
             placeholder="Type a message..."
             value={newMsg}
             onChange={handleTyping}
             required
           />
           <button
-            className="px-6 py-2 bg-gradient-to-r from-purple-700 to-indigo-700 text-white rounded-full font-semibold hover:scale-105 transition"
+            className="mt-2 sm:mt-0 px-6 py-2 bg-gradient-to-r from-purple-700 to-indigo-700 text-white rounded-full font-semibold hover:scale-105 transition w-full sm:w-auto"
             type="submit"
           >
             Send
