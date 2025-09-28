@@ -99,23 +99,7 @@ const ChatApp = () => {
 
   return (
     <div className="flex flex-col h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-black p-6">
-      <div className="bg-gray-900 text-white p-4 rounded-xl mb-4 shadow-lg">
-        <h3 className="font-bold text-lg mb-3">Active Users</h3>
-        <div className="flex flex-wrap gap-2">
-          {activeUsers.length > 0 ? (
-            activeUsers.map((user, idx) => (
-              <span
-                key={idx}
-                className="px-3 py-1 bg-purple-700 rounded-full text-sm shadow-md"
-              >
-                {user}
-              </span>
-            ))
-          ) : (
-            <span className="text-gray-400 italic">No users online</span>
-          )}
-        </div>
-      </div>
+     
 
       <div className="w-full max-w-2xl mx-auto bg-gray-900 rounded-xl shadow-2xl flex flex-col h-full overflow-hidden">
         <div className="bg-gradient-to-r from-purple-700 to-indigo-700 text-white flex justify-between items-center py-4 px-6 shadow-md rounded-t-xl">
