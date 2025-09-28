@@ -1,16 +1,43 @@
-# React + Vite
+# Real-Time Chat Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack real-time chat application built with **React.js**, **Tailwind CSS**, and **Socket.IO**. The frontend is responsive and mobile-friendly, and the backend is powered by **Node.js** and **Express** with rate limiting and active user management.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Real-time messaging using Socket.IO
+- Active user list display
+- Typing indicators
+- Chat history persistence in memory
+- Clear chat functionality
+- Rate limiting to prevent spam
+- Responsive design for mobile and desktop
+- Smooth scrolling to latest messages
 
-## React Compiler
+## Technologies Used
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Frontend:**
 
-## Expanding the ESLint configuration
+- React.js
+- Tailwind CSS
+- Socket.IO Client
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Backend:**
+
+- Node.js
+- Express.js
+- Socket.IO Server
+- Express Rate Limit
+
+## Demo
+
+You can deploy the backend and frontend separately and connect the frontend to your deployed backend.
+
+## Installation
+
+### Backend
+
+1. Clone the repository:
+
+```bash
+git clone <repo-url>
+cd chat-backend
